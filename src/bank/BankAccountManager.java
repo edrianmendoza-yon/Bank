@@ -30,6 +30,7 @@ public class BankAccountManager implements Bank{
 			System.out.println("Account ID: " + account.getKey());
 			SavingsAccount savingsaccount = (SavingsAccount) account.getValue();
 			savingsaccount.DisplayOwnerName();
+			System.out.println("Balance: " + savingsaccount.GetBalance());
 		}
 	}
 }
