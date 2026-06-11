@@ -20,5 +20,10 @@ public class Main {
 		accla.UnfreezeAccount();
 		accla.Withraw(100.0);
 		accla.DisplayBalance();
+		accla.DisplayTransactions();
+		BankAccountManager m_manager = new BankAccountManager();
+		m_manager.AddAccount(accla);
+		m_manager.AddAccount(new SavingsAccount("Test1"));
+		m_manager.DisplayAccounts();
 	}
 }

@@ -1,13 +1,18 @@
 package bank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BankAccount {
 	private double m_balance = 0.0;
 	private boolean m_isFrozen = false;
+	private List<Transaction> m_transactions = new ArrayList<>();
 	// Constructor
 	public BankAccount()
 	{
 		m_balance = 0.0;
 		m_isFrozen = false;
+		m_transactions = new ArrayList<>();
 	}
 	// Deposit
 	public void Deposit(double amount)
@@ -20,6 +25,7 @@ public class BankAccount {
 		if(m_isFrozen == false)
 		{
 			m_balance += amount;
+			m_transactions.add(new Transaction("Deposit", amount));
 			return;
 		}
 		System.out.println("Bank account is currently FROZEN!");
@@ -38,6 +44,7 @@ public class BankAccount {
 			{
 				m_balance -= amount;
 				System.out.println(amount + " has been withdrawed");
+				m_transactions.add(new Transaction("Withdrawal", amount));
 				return;
 			}
 			System.out.println("Insufficient Balance!");
@@ -77,5 +84,18 @@ public class BankAccount {
 	{
 		String message = m_isFrozen == true ? "Bank account is currently FROZEN!" : "Bank is currently not FROZEN";
 		System.out.println(message);
+	}
+	// Get Transaction History
+	public List<Transaction> GetTransactions()
+	{
+		return m_transactions;
+	}
+	// Display Transaction History
+	public void DisplayTransactions() 
+	{
+		for (Transaction transaction: m_transactions)
+		{
+			System.out.println("Transaction: " + transaction.m_transaction + " Amount: " + transaction.m_amount + " Date: " + transaction.m_timestamp);
+		}
 	}
 }
